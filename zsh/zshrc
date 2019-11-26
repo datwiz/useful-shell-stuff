@@ -1,0 +1,95 @@
+# compinstall
+zstyle ':completion:*' completer _complete _ignored
+zstyle :compinstall filename "${HOME}/.zshrc"
+
+autoload -Uz compinit
+compinit
+
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+setopt appendhistory autocd
+bindkey -v
+
+# setup the git status in prompt
+source ~/.git-flow-completion.zsh
+
+###
+# git_prompt function copied from copied from https://gist.github.com/ianloic/1046832
+setopt prompt_subst
+autoload colors zsh/terminfo
+colors
+
+# enable ls colored output
+export CLICOLOR
+
+function __git_prompt {
+  local DIRTY="%{$fg[yellow]%}"
+  local CLEAN="%{$fg[green]%}"
+  local UNMERGED="%{$fg[red]%}"
+  local RESET="%{$terminfo[sgr0]%}"
+  local NOREPO="%{$fg[cyan]%}"
+  git rev-parse --git-dir >& /dev/null
+  if [[ $? == 0 ]]; then
+    echo -n "("
+    if [[ `git ls-files -u >& /dev/null` == '' ]]; then
+      git diff --quiet >& /dev/null
+      if [[ $? == 1 ]]; then
+        echo -n $DIRTY
+      else
+        git diff --cached --quiet >& /dev/null
+        if [[ $? == 1 ]]; then
+          echo -n $DIRTY
+        else
+          echo -n $CLEAN
+        fi
+      fi
+    else
+      echo -n $UNMERGED
+    fi
+    echo -n `git branch | grep '* ' | sed 's/..//'`
+    echo -n $RESET
+    echo -n ")"
+  else
+    echo -n ${NOREPO}
+    echo -n "not-a-repo"
+    echo -n ${RESET}
+  fi
+}
+
+PS1="%F{blue}[%F{green}%n%F{yello}@%F{green}%m%u%F{blue}] %F{27}%4(~,../,)%3~%F{blue} %f> "
+RPROMPT="\$(__git_prompt)"
+
+# give me access to local utilities
+PATH=${PATH}:/${HOME}/bin
+
+export PS1 RPROMPT PATH
+
+######## shell aliases #########
+# formated json output
+alias ppj="python -m json.tool"
+# remove an ssh key from known hosts
+alias rk='ssh-keygen -R'
+# ls helpers
+alias ll='ls -l'
+alias la='ls -la'
+#### docker aliased commands ####
+alias dcps='docker-compose ps'
+alias dcud='docker-compose up -d'
+
+set-title(){
+  print -Pn "\e]0;$@\a"
+}
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+source <(kubectl completion zsh)
+
+export CLICOLOR
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f "${HOME}/gcp/google-cloud-sdk/path.zsh.inc" ]; then source "${HOME}/gcp/google-cloud-sdk/path.zsh.inc"; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f "${HOME}/gcp/google-cloud-sdk/completion.zsh.inc" ]; then source "${HOME}/gcp/google-cloud-sdk/completion.zsh.inc"; fi
