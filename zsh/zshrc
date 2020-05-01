@@ -66,6 +66,7 @@ else
 fi
 
 PS1="%F{magenta}${__screen_prompt}%F{blue}[%F{green}%n%F{yellow}@%F{green}%m%u%F{blue}] %F{27}%4(~,../,)%3~%F{blue} %f> "
+# PS1="%F{blue}[%F{green}%n%F{yellow}@%F{green}%m%u${WINDOW+ %F{blue}(${(l:2::0:)WINDOW})%F{blue}] %F{27}%4(~,../,)%3~%F{blue} %f> "
 RPROMPT="\$(__git_prompt)"
 
 # give me access to local utilities
