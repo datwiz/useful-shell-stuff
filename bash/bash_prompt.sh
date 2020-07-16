@@ -48,4 +48,4 @@ function parse_git_dirty {
 }
 
 export PROMPT_DIRTRIM=2
-export PS1="\e[0;34m\`parse_git_branch\` [\e[0;32m\]\u@\h\e[0;34m]\e[m \e[96m\w\e[m\n[${WINDOW}] $ "
+export PS1="\e[0;34m\`parse_git_branch\` [\e[0;32m\u@\h\e[0;34m]\e[m \e[96m\w\e[m\n[${WINDOW}] $ "
