@@ -1,14 +1,14 @@
 # useful-shell-stuff
 Useful shell utilities and decorations
 
-## installing pk10
+## installing pk10  
 clone the pk10k github repo
 ```
 brew install romkatv/powerlevel10k/powerlevel10k
 cd ${HOME}/src/github/datwiz/useful-shell-stuff
 cp ./zsh/p10k.zsh ${HOME}/.p10k.zsh
 cp ./zsh/zshrc ${HOME}/.zshrc
-cp ./zsh/git-flow-completion.zsh ${HOME}/.git-flow-completion.zsh
+# cp ./zsh/git-flow-completion.zsh ${HOME}/.git-flow-completion.zsh
 ```
 
 If on zsh startup, zsh complains about insecure directories, run `compaudit` to identify the
@@ -25,8 +25,44 @@ Summary:
 * update iTerm2 to use the new fonts
 * update VSCode to use the new fonts
 
-## zsh stuff
-zsh prompt
+## App setup
+Favorite apps
+- Rosetta
+- Amethyst
+- autopkg
+- brew
+- iTerm2
+- Rancher Desktop - with builtkit enabled
+- Slack (App Store)
+- VSCode
 
-## bash stuff
-bash prompt
+
+### VSCode setup
+Favorite extensions
+- C/C++
+- Data Preview
+- Docker
+- GitHub Copilot
+- GraphQL
+- Hashicorp Terraform
+- Hex Editor
+- Kubernetes
+- IntelliCode
+- Makefile Tools
+- Pico-Go
+- PlantUML
+- Python - brings in Pylance and Jupyter extensions
+- Ranbow CSV
+- Remote - Containers
+- Vim
+- YAML
+
+### brew installed apps
+Apps installed via brew
+- gpg
+- jq
+- k9s
+- poetry
+- powerlevel10k
+- pyenv
+- tree
